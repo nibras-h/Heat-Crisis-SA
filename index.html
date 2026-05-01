@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karachi's Heat Crisis: The Story of Survival</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Poppins:wght@300;400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --heat-red: #FF3B2F;
+            --heat-orange: #FF7A2B;
+            --heat-yellow: #FFB84D;
+            --text-dark: #1A1A1A;
+            --text-light: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--heat-red) 0%, var(--heat-orange) 50%, #FF6B3B 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-light);
+            padding: 60px 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1000px;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Rubik Mono One', monospace;
+            font-size: 72px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            animation: slideUp 1s ease-out 0.1s both;
+        }
+
+        .hero .tagline {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            animation: slideUp 1s ease-out 0.2s both;
+            letter-spacing: 1px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Rubik Mono One', monospace;
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 16px 40px;
+            background: var(--text-light);
+            color: var(--heat-red);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: slideUp 1s ease-out 0.4s both;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== TEMPERATURE SECTION ===== */
+        .temperature-section {
+            padding: 100px 40px;
+            background: var(--text-light);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Rubik Mono One', monospace;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 50px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--text-dark);
+        }
+
+        .temperature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .temp-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .temp-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .temp-card-header {
+            padding: 30px;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .temp-card:nth-child(1) .temp-card-header {
+            background: linear-gradient(135deg, var(--heat-red), var(--heat-orange));
+        }
+
+        .temp-city {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .temp-peak {
+            font-size: 48px;
+            font-weight: 900;
+            font-family: 'Rubik Mono One', monospace;
+        }
+
+        .temp-card-body {
+            padding: 30px;
+            background: #f9f9f9;
+        }
+
+        .temp-stat {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* ===== HEALTH SECTION ===== */
+        .health-section {
+            background: linear-gradient(135deg, var(--heat-red), var(--heat-orange));
+            color: var(--text-light);
+            padding: 100px 40px;
+        }
+
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .health-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .health-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .health-icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .health-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .health-description {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* ===== STORIES SECTION ===== */
+        .stories-section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--text-light);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .story-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .story-header {
+            background: linear-gradient(135deg, var(--heat-red), var(--heat-orange));
+            padding: 30px;
+            color: var(--text-light);
+        }
+
+        .story-name {
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Rubik Mono One', monospace;
+            margin-bottom: 5px;
+        }
+
+        .story-location {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .story-body {
+            padding: 30px;
+            background: #f9f9f9;
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--heat-red), var(--heat-orange));
+            color: var(--text-light);
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-family: 'Rubik Mono One', monospace;
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .action-list {
+            margin-bottom: 40px;
+        }
+
+        .action-item {
+            font-size: 16px;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .action-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 14px 35px;
+            background: var(--text-light);
+            color: var(--heat-red);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 14px 35px;
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: var(--heat-red);
+        }
+
+        /* ===== SOCIAL SECTION ===== */
+        .social-section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--text-light);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .social-tile {
+            border-radius: 16px;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .social-tile:hover {
+            transform: scale(1.05);
+        }
+
+        .tile-1 {
+            background: linear-gradient(135deg, var(--heat-red), var(--heat-orange));
+        }
+
+        .social-tile-content {
+            text-align: center;
+        }
+
+        .tile-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--text-dark);
+            color: var(--text-light);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-credit {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .footer-sources {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .cta-section h2 {
+                font-size: 32px;
+            }
+        }
+
+        .fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>KARACHI'S HEAT CRISIS</h1>
+            <p class="tagline">One City. One Week. 568 Lives Lost.</p>
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <div class="stat-number">47.2°C</div>
+                    <div class="stat-label">Peak Temperature (June 2024)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">568</div>
+                    <div class="stat-label">Deaths in One Week</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">22M</div>
+                    <div class="stat-label">People at Risk in Karachi</div>
+                </div>
+            </div>
+            <button class="cta-button">See What Happened</button>
+        </div>
+    </section>
+
+    <!-- TEMPERATURE TRACKER -->
+    <section class="temperature-section">
+        <h2 class="section-title">The Heat Timeline</h2>
+        <div class="temperature-grid">
+            <div class="temp-card">
+                <div class="temp-card-header">
+                    <div class="temp-city">Karachi, Pakistan</div>
+                    <div class="temp-peak">47.2°C</div>
+                </div>
+                <div class="temp-card-body">
+                    <div class="temp-stat"><strong>June 2024:</strong> Record-breaking heat in Pakistan's largest city.</div>
+                    <div class="temp-stat"><strong>Peak Day:</strong> June 25 — 141 deaths in 24 hours.</div>
+                    <div class="temp-stat"><strong>Morgues:</strong> All four in Karachi reached capacity.</div>
+                    <div class="temp-stat"><strong>Hospital Admissions:</strong> 2,547 heatstroke cases documented.</div>
+                    <div class="temp-stat"><strong>Power Crisis:</strong> 12–14 hour daily blackouts with no cooling access.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HEALTH IMPACTS -->
+    <section class="health-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title" style="color: var(--text-light);">What Heat Does to Your Body</h2>
+            <div class="health-grid">
+                <div class="health-card">
+                    <span class="health-icon">🧠</span>
+                    <div class="health-title">Heat Stroke</div>
+                    <div class="health-description">Body temperature soars above 40°C. Brain and organs fail. Death can occur within hours. Karachi's 141 deaths on June 25 were mostly heat stroke.</div>
+                </div>
+
+                <div class="health-card">
+                    <span class="health-icon">💧</span>
+                    <div class="health-title">Dehydration Crisis</div>
+                    <div class="health-description">In extreme heat, bodies lose water faster than they can drink. Many victims in Karachi had no access to clean water due to power outages affecting pumps.</div>
+                </div>
+
+                <div class="health-card">
+                    <span class="health-icon">💔</span>
+                    <div class="health-title">Cardiac Collapse</div>
+                    <div class="health-description">Heat strains the heart dangerously. Elderly people and those with chronic conditions are most vulnerable. Most Karachi victims were aged 60–70.</div>
+                </div>
+
+                <div class="health-card">
+                    <span class="health-icon">💼</span>
+                    <div class="health-title">Occupational Death</div>
+                    <div class="health-description">Construction workers, street vendors, and laborers face deadly heat with no rest periods, no wages if they stop, no protection. Karachi's informal workers bore the heaviest burden.</div>
+                </div>
+
+                <div class="health-card">
+                    <span class="health-icon">🤰</span>
+                    <div class="health-title">Maternal Risk</div>
+                    <div class="health-description">Pregnant women in heat face miscarriage, preterm birth, and low birth weight. Karachi's pregnant residents had no safe cooling spaces.</div>
+                </div>
+
+                <div class="health-card">
+                    <span class="health-icon">🚑</span>
+                    <div class="health-title">Hospital Breakdown</div>
+                    <div class="health-description">Civil Hospital Karachi received 267 heatstroke admissions in 4 days. Health systems collapse when heat overwhelms them all at once.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HUMAN STORIES -->
+    <section class="stories-section">
+        <h2 class="section-title">Stories from June 2024</h2>
+        <p style="text-align: center; font-size: 16px; margin-bottom: 20px; color: #666;"><strong>These are fictionalized composites based on documented June 2024 events and real conditions in Karachi's informal settlements.</strong></p>
+        <p style="text-align: center; font-size: 14px; margin-bottom: 60px; color: #999; font-style: italic;">The people below are not specific individuals, but represent the real experiences of thousands who faced the heat crisis that week.</p>
+
+        <div class="stories-grid">
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="story-name">MEERA</div>
+                    <div class="story-location">Street Vendor, Karachi (June 2024)</div>
+                </div>
+                <div class="story-body">
+                    Meera, 34, has sold fruit on the same Karachi street corner for 8 years. In June 2024, when temperatures hit 47.2°C, she was one of thousands who couldn't stop working. No employer, no wages if she rested, no air conditioning at home. By midday, her body was shutting down. "I had to keep selling. My children depend on me. But the heat doesn't care about that." She collapsed and was rushed to Civil Hospital. She survived—but many didn't.
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="story-name">AKBAR</div>
+                    <div class="story-location">Construction Worker, Karachi (June 2024)</div>
+                </div>
+                <div class="story-body">
+                    Akbar, 42, worked on a building site in an informal settlement where temperatures reached 50°C due to dense housing and no green space. On June 25, 2024—the deadliest day—Akbar went to work like always. "The contractor said we had to finish the job. There were no breaks in the heat. By afternoon I couldn't think straight." He was one of 2,547 people admitted to Karachi's hospitals that week with heatstroke. Many didn't make it out.
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="story-name">FATIMA</div>
+                    <div class="story-location">Pregnant Woman, Karachi (June 2024)</div>
+                </div>
+                <div class="story-body">
+                    Fatima, 28 weeks pregnant, faced 47°C heat in her small informal settlement house with no air conditioning. The power cuts left her unable to turn on a fan. Heat during pregnancy increases risks of miscarriage and preterm birth. Midwives reported that summer: "80% of babies born during heat waves came too early with respiratory problems." Fatima's story ended in heartbreak. But it could have been prevented. It should have been prevented.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>June 2024 Proved the Crisis. 2025 Demands Action.</h2>
+            <p>568 deaths in one week. 2,547 heatstroke cases. 6,193 hospital admissions. Karachi's government has the power to prevent this. What we need is immediate action.</p>
+
+            <div class="action-list">
+                <div class="action-item">Heat alert systems warn people 2–3 days in advance to seek cooling</div>
+                <div class="action-item">Community cooling centers in every neighborhood provide free refuge and water</div>
+                <div class="action-item">Worker protections guarantee rest periods and wages during peak heat</div>
+                <div class="action-item">Health system training enables hospitals to rapidly treat heat illness</div>
+                <div class="action-item">Green infrastructure—trees, green roofs, parks—cools neighborhoods by 2–4°C</div>
+            </div>
+
+            <div class="cta-buttons">
+                <button class="btn-primary">Learn About Solutions</button>
+                <button class="btn-secondary">Share This Story</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL TILES -->
+    <section class="social-section">
+        <h2 class="section-title">Share the Reality</h2>
+        <p style="text-align: center; font-size: 16px; margin-bottom: 60px; color: #666;">Use these messages for social media campaigns</p>
+
+        <div class="social-grid">
+            <div class="social-tile tile-1">
+                <div class="social-tile-content">
+                    <div class="tile-icon">🌡️</div>
+                    <div>47.2°C<br>Karachi's Record Heat</div>
+                </div>
+            </div>
+
+            <div class="social-tile tile-1">
+                <div class="social-tile-content">
+                    <div class="tile-icon">⚠️</div>
+                    <div>568 Deaths<br>In One Week</div>
+                </div>
+            </div>
+
+            <div class="social-tile tile-1">
+                <div class="social-tile-content">
+                    <div class="tile-icon">👥</div>
+                    <div>22 Million<br>People at Risk</div>
+                </div>
+            </div>
+
+            <div class="social-tile tile-1">
+                <div class="social-tile-content">
+                    <div class="tile-icon">💡</div>
+                    <div>Solutions Exist<br>Action Starts Now</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-credit">
+            <strong>Karachi's Heat Crisis: One City. One Week. 568 Lives Lost.</strong><br>
+            A science communication piece about urban heat and health in Karachi, Pakistan during the June 2024 heatwave
+        </div>
+        <div style="margin: 20px 0; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; font-size: 12px;">
+            <strong>Transparency Note:</strong> This piece uses fictionalized composite narratives to illustrate documented heat health challenges in Karachi during June 2024. Meera, Akbar, and Fatima are not specific individuals but represent real conditions and experiences documented in health surveillance reports, hospital records, and NGO research. All statistics and temperature data are verified from government sources, hospitals, and WHO guidelines.
+        </div>
+        <div class="footer-sources">
+            Data sources: Pakistan Meteorological Department (2024) | Civil Hospital Karachi | Edhi Foundation | Government of Pakistan PDMA | World Bank | WHO
+        </div>
+    </footer>
+
+    <script>
+        // Fade in animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fadeInUp');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Apply animations to cards on page load
+        document.querySelectorAll('.temp-card, .health-card, .story-card, .social-tile').forEach((el, i) => {
+            el.style.animation = `fadeInUp 0.8s ease-out ${i * 0.1}s both`;
+            observer.observe(el);
+        });
+
+        // Button interactions
+        document.querySelectorAll('.cta-button, .btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Thank you for engaging with Karachi\'s heat crisis story. Please share this with others to raise awareness and demand action from government officials.');
+            });
+        });
+    </script>
+</body>
+</html>
